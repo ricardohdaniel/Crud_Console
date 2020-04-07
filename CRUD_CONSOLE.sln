@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUD_CONSOLE", "CRUD_CONSOLE.csproj", "{193637BF-57B7-4D85-A3F5-8F2D2A07A151}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{193637BF-57B7-4D85-A3F5-8F2D2A07A151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193637BF-57B7-4D85-A3F5-8F2D2A07A151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193637BF-57B7-4D85-A3F5-8F2D2A07A151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193637BF-57B7-4D85-A3F5-8F2D2A07A151}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
