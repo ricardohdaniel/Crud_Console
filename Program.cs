@@ -14,28 +14,36 @@ namespace CRUD_CONSOLE
 
             Console.WriteLine(Opcoes.Cadastrar + " (Digite 0)");
             Console.WriteLine(Opcoes.Consultar + " (Digite 1)");
-            Console.WriteLine(Opcoes.Alterar + " (Digite 2)");
-            Console.WriteLine(Opcoes.Excluir + " (Digite 3)");
+            Console.WriteLine(Opcoes.Excluir + " (Digite 2)");
 
             int opc = int.Parse(Console.ReadLine());
-
-            if (opc == 0)
+            try
             {
-                Console.Write("Nome: ");
-                string nome = Console.ReadLine();
-                Console.Write("Data de Nascimento: ");
-                DateTime dataNasc = DateTime.Parse(Console.ReadLine());
-                Console.Write("E-mail: ");
-                string email = Console.ReadLine();
-                Console.Write("Telefone: ");
-                string telefone = Console.ReadLine();
-                Cliente cliente = new Cliente();
-                cliente.Cadastrar(nome, dataNasc, email, telefone);
+                if (opc == 0)
+                {
+                    Console.Write("Nome: ");
+                    string nome = Console.ReadLine();
+                    Console.Write("Data de Nascimento: ");
+                    DateTime dataNasc = DateTime.Parse(Console.ReadLine());
+                    Console.Write("E-mail: ");
+                    string email = Console.ReadLine();
+                    Console.Write("Telefone: ");
+                    string telefone = Console.ReadLine();
+                    Cliente cliente = new Cliente();
+                    cliente.Cadastrar(nome, dataNasc, email, telefone);
+                }
+                if (opc == 1)
+                {
+                    Console.Write("Digite o ID do Cliente a ser exibido: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Cliente cliente = new Cliente();
+                    cliente.Consultar(id);
+                }
             }
-
-
-
-
+            catch (Exception erro)
+            {
+                Console.WriteLine("Erro: " + erro.Message);
+            }
 
         }
     }

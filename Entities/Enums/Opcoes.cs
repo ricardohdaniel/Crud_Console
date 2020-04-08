@@ -4,7 +4,6 @@
     {
         Cadastrar = 0,
         Consultar = 1,
-        Alterar = 2, 
-        Excluir = 3
+        Excluir = 2
     }
 }
