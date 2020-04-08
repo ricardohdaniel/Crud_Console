@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+
 namespace CRUD_CONSOLE
 {
     public class ConexaoDb

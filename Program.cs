@@ -39,6 +39,13 @@ namespace CRUD_CONSOLE
                     Cliente cliente = new Cliente();
                     cliente.Consultar(id);
                 }
+                if (opc == 2)
+                {
+                    Console.Write("Digite o ID do Cliente a ser excluído: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Cliente cliente = new Cliente();
+                    cliente.Excluir(id);
+                }
             }
             catch (Exception erro)
             {

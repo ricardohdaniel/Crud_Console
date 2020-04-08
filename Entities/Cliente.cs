@@ -22,39 +22,68 @@ namespace CRUD_CONSOLE.Entities
             DataNascimento = dataNascimento;
             Email = email;
             Telefone = telefone;
+            try
+            {
+                string arg = "INSERT INTO Clientes (nome,datanasc,email,telefone) VALUES (@nome,@datanasc,@email,@telefone)";
+                ConexaoDb con = new ConexaoDb(arg);
+                con.Comando.Parameters.AddWithValue("@nome", nome);
+                con.Comando.Parameters.AddWithValue("@datanasc", dataNascimento);
+                con.Comando.Parameters.AddWithValue("@email", email);
+                con.Comando.Parameters.AddWithValue("@telefone", telefone);
 
-            string arg = "INSERT INTO Clientes (nome,datanasc,email,telefone) VALUES (@nome,@datanasc,@email,@telefone)";
-            ConexaoDb con = new ConexaoDb(arg);
-            con.Comando.Parameters.AddWithValue("@nome", nome);
-            con.Comando.Parameters.AddWithValue("@datanasc", dataNascimento);
-            con.Comando.Parameters.AddWithValue("@email", email);
-            con.Comando.Parameters.AddWithValue("@telefone", telefone);
-
-            con.Comando.ExecuteNonQuery();
-            con.FecharConexao();
-
+                con.Comando.ExecuteNonQuery();
+                con.FecharConexao();
+                Console.WriteLine("Cliente cadastrado com sucesso!");
+            }
+            catch (Exception erro)
+            {
+                Console.WriteLine("Erro ao efetuar cadastro-> " + erro.Message);
+            }
         }
 
         public void Consultar(int id)
         {
-            string arg = "SELECT * FROM Clientes WHERE id=@id";
-            ConexaoDb con = new ConexaoDb(arg);
-            con.Comando.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
-
-            MySqlDataReader dr = con.Comando.ExecuteReader();
-
-            while (dr.Read())
+            try
             {
-                Nome = dr["nome"].ToString(); 
-                DataNascimento = Convert.ToDateTime(dr["datanasc"]);
-                Email = dr["email"].ToString();
-                Telefone = dr["telefone"].ToString();
+                string arg = "SELECT * FROM Clientes WHERE id=@id";
+                ConexaoDb con = new ConexaoDb(arg);
+                con.Comando.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
 
-                Console.WriteLine(Nome + " " + DataNascimento + " " + Email + " " + Telefone);
+                MySqlDataReader dr = con.Comando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Nome = dr["nome"].ToString();
+                    DataNascimento = Convert.ToDateTime(dr["datanasc"]);
+                    Email = dr["email"].ToString();
+                    Telefone = dr["telefone"].ToString();
+
+                    Console.WriteLine(Nome + " " + DataNascimento + " " + Email + " " + Telefone);
+                }
+                con.FecharConexao();
+            }
+            catch (Exception erro)
+            {
+                Console.WriteLine("Erro ao efetuar a pesquisa-> " + erro.Message);
+            }
+        }
+
+        public void Excluir(int id)
+        {
+            try
+            {
+                string arg = "DELETE FROM Clientes WHERE id=@id";
+                ConexaoDb con = new ConexaoDb(arg);
+                con.Comando.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+                con.Comando.ExecuteNonQuery();
+                con.FecharConexao();
+                Console.WriteLine("Cliente excluído com sucesso!");
+            }
+            catch (Exception erro)
+            {
+                Console.WriteLine("Erro ao efetuar a exclusão-> " + erro.Message);
             }
 
-
-            con.FecharConexao();
         }
     }
 }
