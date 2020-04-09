@@ -15,8 +15,10 @@ namespace CRUD_CONSOLE
             Console.WriteLine(Opcoes.Cadastrar + " (Digite 0)");
             Console.WriteLine(Opcoes.Consultar + " (Digite 1)");
             Console.WriteLine(Opcoes.Excluir + " (Digite 2)");
-
+            Console.WriteLine(Opcoes.Listar + " (Digite 3)");
+            Console.Write("Opção: ");
             int opc = int.Parse(Console.ReadLine());
+            Console.WriteLine("-------------------------------------------------------");
             try
             {
                 if (opc == 0)
@@ -45,6 +47,11 @@ namespace CRUD_CONSOLE
                     int id = int.Parse(Console.ReadLine());
                     Cliente cliente = new Cliente();
                     cliente.Excluir(id);
+                }
+                if (opc == 3)
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.ListarClientes();
                 }
             }
             catch (Exception erro)

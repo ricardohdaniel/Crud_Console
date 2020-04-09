@@ -68,6 +68,36 @@ namespace CRUD_CONSOLE.Entities
             }
         }
 
+        public void ListarClientes()
+        {
+            try
+            {
+                string arg = "SELECT * FROM Clientes";
+                ConexaoDb con = new ConexaoDb(arg);
+                MySqlDataReader dr = con.Comando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    int id = Convert.ToInt32(dr["id"]);
+                    Nome = dr["nome"].ToString();
+                    DataNascimento = Convert.ToDateTime(dr["datanasc"]);
+                    Email = dr["email"].ToString();
+                    Telefone = dr["telefone"].ToString();
+
+                    Console.WriteLine("Id: " + id + "\n" + "Nome: " + Nome + "\n" 
+                    + "Data Nasc.: " + DataNascimento.ToString("dd/MM/yyyy")
+                     + "\n" + "E-mail: " + Email + "\n" + "Telefone: " + Telefone);
+                    Console.WriteLine();
+                }
+
+                con.FecharConexao();
+            }
+            catch (Exception erro)
+            {
+                Console.WriteLine("Erro ao efetuar a listagem-> " + erro.Message);
+            }
+        }
+
         public void Excluir(int id)
         {
             try
